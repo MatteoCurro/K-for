@@ -24,7 +24,7 @@ require("header.php");
     </li>
     <li>
       <label for="data_nascita">Data di nascita</label>
-      <input id="data_nascita" name="data_nascita" type="date" placeholder="10/07/1973">
+      <input id="data_nascita" name="data_nascita" type="date" placeholder="1973-10-05">
     </li>
     <li>
       <label for="componenti_nucleo">Componenti nucleo familiare</label>
@@ -63,7 +63,7 @@ require("header.php");
     </li>
     <li>
       <label for="recall">Recall?</label>
-      <input id="recall" name="recall" type="checkbox" placeholder="Va richiamato?">
+      <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?">
     </li>
     <li>
       <label for="data_recall">Data Recall</label>
@@ -101,11 +101,8 @@ require("header.php");
 
 </script>
 
-</body>
-
-</html>
-
 <?php
+require('footer.php');
 // fine verifica login
 } else {
   // die();
