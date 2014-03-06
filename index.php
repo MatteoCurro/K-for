@@ -37,7 +37,10 @@ require("header.php");
 			<td><?php echo $utente['nome']; ?></td>
 			<td><?php echo $utente['cognome']; ?></td>
 			<td><?php echo $utente['citta']; ?></td>
-			<td><?php echo $utente['data_incontro']; ?></td>
+			<td><?php 
+					$data = strtotime($utente['data_incontro']);
+					echo date('d/m/Y',$data); 
+				?></td>
 			<td><a class="button" href="view_client.php?id=<?php echo $utente['id']; ?>">View</a></td>
 			<td><a class="button" href="edit_client.php?id=<?php echo $utente['id']; ?>">Edit</a></td>
 			<td><a class="button red delete" href="delete_client.php?id=<?php echo $utente['id']; ?>">Delete</a></td>
