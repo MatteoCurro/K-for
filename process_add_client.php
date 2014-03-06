@@ -11,12 +11,12 @@ $componenti_nucleo = assignToVar('componenti_nucleo');
 $persona_interessata = assignToVar('persona_interessata');
 $professione = assignToVar('professione');
 $tel_cell = assignToVar('tel_cell');
-$tel_fisso = assignToVar('te_fisso');
+$tel_fisso = assignToVar('tel_fisso');
 $citta = assignToVar('citta');
 $indirizzo = assignToVar('indirizzo');
 $data_incontro = assignToVar('data_incontro');
 $data_recall = assignToVar('data_recall');
-$recall = assignToVar('recall');
+$recall = isset($_POST["recall"]) ? $_POST["recall"] : 0;;
 $id_utente = $_SESSION['user_id'];
 
 
@@ -55,7 +55,7 @@ $salva = executeQuery("INSERT INTO clienti
 	$dati, $conn);
 
 if ($salva) {
-	header("location: users.php");
+	header("location: index.php");
 }
 
 ?>
