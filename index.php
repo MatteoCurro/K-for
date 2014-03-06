@@ -11,7 +11,7 @@ require("header.php");
 ?>
 	<div class="wrapper">
 	<h2>Clienti</h2>
-	<a class="button float_r" href="add_client.php?">Aggiungi nuovo</a>
+	<a class="button float_r" href="add_client.php">Aggiungi nuovo</a>
 	<table class="clients">
 		<tr>
 		<th>ID</th>
@@ -26,7 +26,7 @@ require("header.php");
 
 <?php
 // effettuo una query per recuperare i dati relativi ai clienti
-	$utenti = query('SELECT * FROM clienti', array(), $conn);
+	$utenti = query('SELECT * FROM clienti ORDER BY id DESC LIMIT 100', array(), $conn);
 	if ($utenti) {
 		// ciclo il cliente
 		foreach ($utenti as $utente) {
@@ -74,10 +74,9 @@ $('.delete').on('click', function (e) {
      }     
 });
 </script>
-</body>
 
-</html>
 <?php
+require('footer.php');
 // fine verifica login
 } else {
 	header('LOCATION:login.php'); 
