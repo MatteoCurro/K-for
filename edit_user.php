@@ -23,7 +23,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
 
       ?>
 
-<h1>Aggiungi utente</h1>
+<h1>Modifica utente</h1>
 <form id="copia_commissione" action="process_edit_user.php?id=<?php echo $utente['id']; ?>" method="POST">
 <fieldset class="normale">
   <legend>Cliente</legend>
@@ -89,11 +89,8 @@ function validatePass(p1, p2) {
 
 </script>
 
-</body>
-
-</html>
-
 <?php
+require('footer.php');
 // fine verifica login
 } else {
   // die();
