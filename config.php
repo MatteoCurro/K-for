@@ -1,7 +1,7 @@
 <?php
 
-require 'functions.php';
-require 'db.php';
+require 'config/functions.php';
+require 'config/db.php';
 
 // Connect to the db
 $conn = connect($config);
