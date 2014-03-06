@@ -146,13 +146,19 @@ fieldset {
     height: 0;
 	}
 
-	input[type=text], input[type=password], input[type=email], textarea, select, input[type=date] {
+	input[type=text], input[type=password], input[type=tel], input[type=checkbox], input[type=number], input[type=email], textarea, select, input[type=date] {
 		width: 400px;
 		border-radius: 3px;
 		border: 1px solid #ccc;
 		margin: 20px;
 		font-size: 20px;
 		padding: 12px;
+		height: 50px;
+	}
+
+	input:disabled {
+		opacity: .5;
+		background-color: #eee;
 	}
 
 	textarea {
