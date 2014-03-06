@@ -64,5 +64,4 @@ require("header.php");
     <input class="button" type='submit' value='Login' name='sub' />
   </form>
 </div>
-</body>
-</html>
+<?php require('footer.php'); ?>
