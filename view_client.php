@@ -40,8 +40,10 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
   <li><strong>Data incontro:</strong> <?php 
           echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
         ?></li>
-  <li><strong>Recall:</strong> <?php echo $cliente['recall']; ?></li>
-  <li><strong>Data recall:</strong> <?php echo $cliente['data_recall']; ?></li>
+  <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
+  <li><strong>Data recall:</strong> <?php 
+          echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
+        ?></li>
   <?php
   // effettuo una query per recuperare i dati relativi al cliente con l'id passato in get
     $utenti = query('SELECT * FROM utenti where id = :id LIMIT 1', array('id' => $cliente['id_utente']), $conn);
