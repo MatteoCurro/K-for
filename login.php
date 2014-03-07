@@ -47,21 +47,19 @@ require("header.php");
 
 
 <div class="wrapper">
-
-<?php 
-  if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] === true) {
-?> <p>LOGGATO</p>
-<?php
-  // var_dump($row);
- } ?>
- <div class="error"><?php echo $error ?></div>
+ <h1>Login</h1>
+ <div class="error"><?php if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] === true) { ?>
+<p>Login gi&agrave; effettuato!</p> 
+<?php } ?>
+<?php echo $error ?></div>
   <form name='input' action='' method='post'>
-    <label for='username'>Username</label><br>
-    <input type='text' placeholder='username' id='username' name='username' />
-    <br>
-    <label for='password'>Password</label><br>
-    <input type='password' placeholder='password' id='password' name='password' />
+  <fieldset>
+    <label for='username'>Username</label>
+    <input type='text' placeholder="Inserisci l'username" id='username' name='username' />
+    <label for='password'>Password</label>
+    <input type='password' placeholder="Inserisci la password" id='password' name='password' />
     <input class="button" type='submit' value='Login' name='sub' />
+    </fieldset>
   </form>
 </div>
 <?php require('footer.php'); ?>
