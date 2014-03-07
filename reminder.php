@@ -65,11 +65,11 @@ require("header.php");
 			<td><?php echo $utente['citta']; ?></td>
 			<td><?php 
 					$data = strtotime($utente['data_incontro']);
-					echo date('d/m/Y',$data); 
+					echo date('d/m/y',$data); 
 				?></td>
 				<td><strong><?php 
 					$data = strtotime($utente['data_recall']);
-					echo date('d/m/Y',$data); 
+					echo date('d/m/y',$data); 
 				?></strong></td>
 			<td><a class="button" href="view_client.php?id=<?php echo $utente['id']; ?>">View</a></td>
 			<td><a class="button" href="edit_client.php?id=<?php echo $utente['id']; ?>">Edit</a></td>
