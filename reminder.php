@@ -32,6 +32,10 @@ require("header.php");
 				<option value="15" <?php if ($dati['recall_days'] == "15"): ?> selected="selected"<?php endif; ?>>15 giorni</option>
 				<option value="30" <?php if ($dati['recall_days'] == "30"): ?> selected="selected"<?php endif; ?>>30 giorni</option>
 				<option value="60" <?php if ($dati['recall_days'] == "60"): ?> selected="selected"<?php endif; ?>>60 giorni</option>
+				<option value="90" <?php if ($dati['recall_days'] == "90"): ?> selected="selected"<?php endif; ?>>90 giorni</option>
+				<option value="120" <?php if ($dati['recall_days'] == "120"): ?> selected="selected"<?php endif; ?>>120 giorni</option>
+				<option value="150" <?php if ($dati['recall_days'] == "150"): ?> selected="selected"<?php endif; ?>>150 giorni</option>
+				<option value="180" <?php if ($dati['recall_days'] == "180"): ?> selected="selected"<?php endif; ?>>180 giorni</option>
 			</select>
 		 </p>
 	 </form>
