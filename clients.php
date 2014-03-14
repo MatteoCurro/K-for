@@ -11,6 +11,7 @@ require("header.php");
 ?>
 	<div class="wrapper">
 	<h2>Clienti</h2>
+	<p>Elenco completo dei clienti.</p>
 	<a class="button float_r" href="add_client.php">Aggiungi nuovo</a>
 	<table class="clients">
 		<tr>
@@ -79,7 +80,7 @@ $('.delete').on('click', function (e) {
 require('footer.php');
 // fine verifica login
 } else {
-	header('LOCATION:login.php'); 
+	header('LOCATION:clients_restricted.php'); 
     die();
 }
 ?>
