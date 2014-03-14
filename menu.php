@@ -15,14 +15,20 @@
 	<?php 
 		if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] === true) {
 	?>
-		<li><a href="index.php">Clienti</a></li>
+		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) { ?>
+			<li><a href="clients.php">Clienti</a></li>
+		<?php } else { ?>
+			<li><a href="clients_restricted.php">Clienti</a></li>
+		<?php } ?>
+
 		<li><a href="reminder.php">Reminder</a></li>
-			<?php 
-			  if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) {
-			?>
+
+		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) { ?>
 			<li><a href="users.php">Utenti</a></li>
-			<?php } ?>
+		<?php } ?>
+
 		<li><a href="logout.php">Logout</a></li>
+
 	<?php } else { ?>
 		<li><a href="login.php" title="Login">Login</a></li>
 	<?php } ?>
