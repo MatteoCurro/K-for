@@ -15,6 +15,7 @@ $tel_fisso = assignToVar('tel_fisso');
 $citta = assignToVar('citta');
 $indirizzo = assignToVar('indirizzo');
 $data_incontro = assignToVar('data_incontro');
+$note = assignToVar('note');
 $data_recall = assignToVar('data_recall');
 $recall = isset($_POST["recall"]) ? $_POST["recall"] : 0;;
 $id_utente = $_SESSION['user_id'];
@@ -43,6 +44,7 @@ $dati = array(
 	'citta'					=>		$citta,
 	'indirizzo'				=>		$indirizzo,
 	'data_incontro'			=>		$data_incontro,
+	'note'					=>		$note,
 	'data_recall'			=>		$data_recall,
 	'recall'				=>		$recall,
 	'id_utente'				=>		$id_utente
@@ -50,8 +52,8 @@ $dati = array(
 
 // query che salva i valori precedentemente dichiarati nel database
 $salva = executeQuery("INSERT INTO clienti
-			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, data_recall, recall, id_utente)
-	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :data_recall, :recall, :id_utente);",
+			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, note, data_recall, recall, id_utente)
+	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :note, :data_recall, :recall, :id_utente);",
 	$dati, $conn);
 
 if ($salva) {

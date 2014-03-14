@@ -81,6 +81,10 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         ?>">
     </li>
     <li>
+      <label for="note">Note</label>
+      <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."><?php echo $cliente['note']; ?></textarea>
+    </li>
+    <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?" <?php if ($cliente['recall']) { echo 'checked';}; ?>>
     </li>

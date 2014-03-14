@@ -62,6 +62,10 @@ require("header.php");
       <input id="data_incontro" name="data_incontro" type="date" placeholder="">
     </li>
     <li>
+      <label for="note">Note</label>
+      <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."></textarea>
+    </li>
+    <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?">
     </li>

@@ -40,6 +40,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
   <li><strong>Data incontro:</strong> <?php 
           echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
         ?></li>
+  <li><strong>Note:</strong> <?php echo $cliente['note']; ?></li>
   <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
   <li><strong>Data recall:</strong> <?php 
           echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
@@ -52,7 +53,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
       foreach ($utenti as $utente) {
 
         ?>
-    <li><strong>Cliente aggiunto da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
+    <li><strong>Aggiunto / modificato da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
     <?php 
       } 
     }
