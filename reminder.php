@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
-if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
+if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true  && $_SESSION["livello"] == 1) {
 
 require('config.php');
 
