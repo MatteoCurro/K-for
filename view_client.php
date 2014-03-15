@@ -19,49 +19,55 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
   if ($clienti) {
     // ciclo il cliente
     foreach ($clienti as $cliente) {
-
+      // visualizza il cliente solamente se l'utente corrente è admin o è l'autore del cliente selezionato
+      if ($_SESSION["livello"] == 1 || $_SESSION["user_id"] == $cliente["id_utente"]) {
       ?>
-<a class="button float_r" href="edit_client.php?id=<?php echo $cliente['id']; ?>">Modifica</a>
-<h1>Visualizza cliente</h1>
+      <a class="button float_r" href="edit_client.php?id=<?php echo $cliente['id']; ?>">Modifica</a>
+      <h1>Visualizza cliente</h1>
 
-<ol class="single_view_client">
-  <li><strong>Nome:</strong> <?php echo $cliente['nome']; ?></li>
-  <li><strong>Cognome:</strong> <?php echo $cliente['cognome']; ?></li>
-  <li><strong>Data di nascita:</strong> <?php 
-          echo date('d/m/Y',strtotime($cliente['data_nascita'])); 
-        ?></li>
-  <li><strong>Componenti nucleo:</strong> <?php echo $cliente['componenti_nucleo']; ?></li>
-  <li><strong>Persona interessata:</strong> <?php echo $cliente['persona_interessata']; ?></li>
-  <li><strong>Professione:</strong> <?php echo $cliente['professione']; ?></li>
-  <li><strong>Tel. cellulare:</strong> <?php echo $cliente['tel_cell']; ?></li>
-  <li><strong>Tel. fisso:</strong> <?php echo $cliente['tel_fisso']; ?></li>
-  <li><strong>Citt&agrave;:</strong> <?php echo $cliente['citta']; ?></li>
-  <li><strong>Indirizzo:</strong> <?php echo $cliente['indirizzo']; ?></li>
-  <li><strong>Data incontro:</strong> <?php 
-          echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
-        ?></li>
-  <li><strong>Note:</strong> <?php echo $cliente['note']; ?></li>
-  <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
-  <li><strong>Data recall:</strong> <?php 
-          echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
-        ?></li>
-  <?php
-  // effettuo una query per recuperare i dati relativi al cliente con l'id passato in get
-    $utenti = query('SELECT * FROM utenti where id = :id LIMIT 1', array('id' => $cliente['id_utente']), $conn);
-    if ($utenti) {
-      // ciclo il cliente
-      foreach ($utenti as $utente) {
+      <ol class="single_view_client">
+        <li><strong>Nome:</strong> <?php echo $cliente['nome']; ?></li>
+        <li><strong>Cognome:</strong> <?php echo $cliente['cognome']; ?></li>
+        <li><strong>Data di nascita:</strong> <?php 
+                echo date('d/m/Y',strtotime($cliente['data_nascita'])); 
+              ?></li>
+        <li><strong>Componenti nucleo:</strong> <?php echo $cliente['componenti_nucleo']; ?></li>
+        <li><strong>Persona interessata:</strong> <?php echo $cliente['persona_interessata']; ?></li>
+        <li><strong>Professione:</strong> <?php echo $cliente['professione']; ?></li>
+        <li><strong>Tel. cellulare:</strong> <?php echo $cliente['tel_cell']; ?></li>
+        <li><strong>Tel. fisso:</strong> <?php echo $cliente['tel_fisso']; ?></li>
+        <li><strong>Citt&agrave;:</strong> <?php echo $cliente['citta']; ?></li>
+        <li><strong>Indirizzo:</strong> <?php echo $cliente['indirizzo']; ?></li>
+        <li><strong>Data incontro:</strong> <?php 
+                echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
+              ?></li>
+        <li><strong>Note:</strong> <?php echo $cliente['note']; ?></li>
+        <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
+        <li><strong>Data recall:</strong> <?php 
+                echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
+              ?></li>
+        <?php
+        // effettuo una query per recuperare i dati relativi al cliente con l'id passato in get
+          $utenti = query('SELECT * FROM utenti where id = :id LIMIT 1', array('id' => $cliente['id_utente']), $conn);
+          if ($utenti) {
+            // ciclo il cliente
+            foreach ($utenti as $utente) {
 
+              ?>
+          <li><strong>Aggiunto / modificato da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
+          <?php 
+            } // fine foreach per estrarre il nome dell'utente
+          } // fine if per estrarre il nome dell'utente
         ?>
-    <li><strong>Aggiunto / modificato da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
-    <?php 
-      } 
-    }
-  ?>
-</ol>
-<?php 
-    } 
-  }
+      </ol>
+      <?php 
+      } else {// fine if per controllare se l'utente può visualizzare il cliente corrente
+        // stampa a video un messaggio di errore
+        echo "<h2>OPS!</h2>
+        <p>Non hai i permessi necessari a visualizzare l'utente specificato!</p>";
+      }
+    } // fine foreach clienti
+  } // fine if clienti
 ?>
 </div> <!--fine wrapper-->
 
