@@ -2,17 +2,21 @@
 ob_start();
 session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
-if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true && $_SESSION["livello"] == 1) {
+if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
 
-require 'config.php';
+require("config.php");
 
 require("header.php");
 
 ?>
 	<div class="wrapper">
+	<a class="button float_r" href="add_client.php">Aggiungi nuovo</a>
 	<h2>Clienti</h2>
 	<p>Elenco completo dei clienti.</p>
-	<a class="button float_r" href="add_client.php">Aggiungi nuovo</a>
+	<?php
+		// include il form per la ricerca avanzata
+		require('search_form.php');
+	?>
 	<table class="clients">
 		<tr>
 		<th>ID</th>
@@ -26,8 +30,9 @@ require("header.php");
 		</tr>
 
 <?php
-// effettuo una query per recuperare i dati relativi ai clienti
-	$clienti = query('SELECT * FROM clienti ORDER BY id DESC LIMIT 100', array(), $conn);
+	// include il file che effettua la ricerca di default o avanzata
+	require('process_search.php');
+	// filtro i clienti
 	if ($clienti) {
 		// ciclo il cliente
 		foreach ($clienti as $cliente) {
