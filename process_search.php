@@ -13,6 +13,7 @@
 	// Dichiarazioni variabili relative ai clienti
 	$nome = assignToVar('nome');;
 	$cognome = assignToVar('cognome');
+	$codice = assignToVar('codice');
 	$citta = assignToVar('citta');
 	$id_utente = assignToVar('user_id');
 	$recall = isset($_GET["recall"]) ? $_GET["recall"] : 0;
@@ -23,6 +24,9 @@
 	}
 	if (!empty($cognome)) {
 	  $conditions[] = 'cognome LIKE "'.$cognome.'%"';
+	}
+	if (!empty($codice)) {
+	  $conditions[] = 'codice LIKE "'.$codice.'%"';
 	}
 	if (!empty($citta)) {
 	  $conditions[] = 'citta LIKE "%'.$citta.'%"';
