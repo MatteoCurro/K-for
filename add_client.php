@@ -66,6 +66,14 @@ require("header.php");
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."></textarea>
     </li>
     <li>
+      <label for="codice">Codice</label>
+      <input id="codice" name="codice" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci il codice">
+    </li>
+    <li>
+      <label for="rinnovo">Rinnovo?</label>
+      <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?">
+    </li>
+    <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?">
     </li>

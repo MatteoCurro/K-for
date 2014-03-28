@@ -85,6 +85,14 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."><?php echo $cliente['note']; ?></textarea>
     </li>
     <li>
+      <label for="codice">Codice</label>
+      <input id="codice" name="codice" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci il codice" value="<?php echo $cliente['codice']; ?>">
+    </li>
+    <li>
+      <label for="rinnovo">Rinnovo?</label>
+      <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?" <?php if ($cliente['rinnovo']) { echo 'checked';}; ?>>
+    </li>
+    <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?" <?php if ($cliente['recall']) { echo 'checked';}; ?>>
     </li>

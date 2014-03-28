@@ -42,6 +42,8 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
                 echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
               ?></li>
         <li><strong>Note:</strong> <?php echo $cliente['note']; ?></li>
+        <li><strong>Codice:</strong> <?php echo $cliente['codice']; ?></li>
+        <li><strong>Rinnovo:</strong> <?php echo $cliente['rinnovo'] ? 'Si' : 'No'; ?></li>
         <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
         <li><strong>Data recall:</strong> <?php 
                 echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
