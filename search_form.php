@@ -1,9 +1,13 @@
-<div class="search">
+<div class="search clearfix">
 	<form action="" method="get">
+		<div class="left-50">
 		<label for="nome">Nome</label>
-		<input type="text" name="nome"><br>
+		<input type="text" name="nome" placeholder="Nome"><br>
 		<label for="cognome">Cognome</label>
-		<input type="text" name="cognome"><br>
+		<input type="text" name="cognome" placeholder="Cognome">
+		</div>
+
+		<div class="left-50">
 		<label for="citta">Citt&agrave;</label>
 		<select name="citta" id="">
 			<option value="">-Seleziona Citt&agrave;-</option>
@@ -29,10 +33,10 @@
 				<?php }
 			} ?>
 		</select><br>
-
 		<label for="recall">Recall</label>
-		<input name="recall" type="checkbox" value="1"><br>
+		<input name="recall" type="checkbox" value="1">
 		<?php } ?>
+		</div>
 		<button type="submit">Cerca</button>
 	</form>
 </div>
