@@ -7,16 +7,18 @@ if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true  && $_
 require('config.php');
 
 
-if (isset( $_GET['recall_days'] ) && 
-    !empty( $_GET['recall_days'] )) {
+if (isset( $_GET['data_fine'] ) && 
+    !empty( $_GET['data_fine'] )) {
 
 	$dati =  array(
-	    'recall_days' => (int)htmlspecialchars($_GET['recall_days'])
+	    'data_inizio' => htmlspecialchars($_GET['data_inizio']),
+	    'data_fine' => htmlspecialchars($_GET['data_fine'])
 	);
 
 } else {
 	$dati =  array(
-	    'recall_days' => 7
+	    'data_inizio' => date('Y-m-d'),
+	    'data_fine' => date('Y-m-d', strtotime("+7 days"))
 	);
 }
 
@@ -25,19 +27,14 @@ require("header.php");
 ?>
 	<div class="wrapper">
 	<h2>Clienti da richiamare</h2>
-	<form action="" type="GET">
-		<p class="float_r">Mostra i recall dei prossimi 
-			<select name="recall_days" id="recall_days" onchange="this.form.submit()">
-				<option value="7" <?php if ($dati['recall_days'] == "7"): ?> selected="selected"<?php endif; ?>>7 giorni</option>
-				<option value="15" <?php if ($dati['recall_days'] == "15"): ?> selected="selected"<?php endif; ?>>15 giorni</option>
-				<option value="30" <?php if ($dati['recall_days'] == "30"): ?> selected="selected"<?php endif; ?>>30 giorni</option>
-				<option value="60" <?php if ($dati['recall_days'] == "60"): ?> selected="selected"<?php endif; ?>>60 giorni</option>
-				<option value="90" <?php if ($dati['recall_days'] == "90"): ?> selected="selected"<?php endif; ?>>90 giorni</option>
-				<option value="120" <?php if ($dati['recall_days'] == "120"): ?> selected="selected"<?php endif; ?>>120 giorni</option>
-				<option value="150" <?php if ($dati['recall_days'] == "150"): ?> selected="selected"<?php endif; ?>>150 giorni</option>
-				<option value="180" <?php if ($dati['recall_days'] == "180"): ?> selected="selected"<?php endif; ?>>180 giorni</option>
-			</select>
-		 </p>
+	<form action="" type="GET" class="search_reminder clearfix">
+			<?php // set the default timezone to use. Available since PHP 5.1
+			date_default_timezone_set('UTC'); ?>
+			<label for="data_inizio">Data inizio</label>
+			<input id="data_inizio" name="data_inizio" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_inizio'])); ?>">
+			<label for="data_fine">Data fine</label>
+			<input id="data_fine" name="data_fine" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_fine'])); ?>">
+			<button type="submit">Cerca</button>
 	 </form>
 	<table class="clients">
 		<tr>
@@ -56,7 +53,7 @@ require("header.php");
 // effettuo una query per recuperare i dati relativi ai clienti
 	
 
-	$utenti = query('SELECT * FROM clienti WHERE recall = 1 AND data_recall <= DATE_ADD(CURDATE(),INTERVAL :recall_days DAY) ORDER BY data_recall ASC;', $dati, $conn);
+	$utenti = query("SELECT * FROM clienti WHERE recall = 1 AND data_recall BETWEEN STR_TO_DATE(:data_inizio, '%Y-%m-%d') AND STR_TO_DATE(:data_fine, '%Y-%m-%d') ORDER BY data_recall ASC;", $dati, $conn);
 	if ($utenti) {
 		// ciclo il cliente
 		foreach ($utenti as $utente) {
@@ -107,6 +104,17 @@ $('.delete').on('click', function (e) {
 	  });
      }     
 });
+
+(function($){
+	  //  Imposto la data corrente nel campo data incontro di default
+  Date.prototype.toDateInputValue = (function() {
+    var local = new Date(this);
+    local.setMinutes(this.getMinutes() - this.getTimezoneOffset());
+    return local.toJSON().slice(0,10);
+  });
+
+  // $('#data_inizio').val(new Date().toDateInputValue());
+})(jQuery);
 </script>
 
 <?php
