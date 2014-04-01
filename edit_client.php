@@ -121,9 +121,9 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
 <script>
 (function($){
   // disabilito il campo recall se non è spuntata la checkbox
-  var recall = $('#recall').is(':checked');
-  $('#recall').click(function() {
-    recall = $('#recall').is(':checked');
+  var recall = $('#recall, #rinnovo').is(':checked');
+  $('#recall, #rinnovo').click(function() {
+    recall = $('#recall, #rinnovo').is(':checked');
     $('#data_recall').prop('disabled', !(recall));
   });
   $('#data_recall').prop('disabled', !(recall));

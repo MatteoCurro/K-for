@@ -84,6 +84,7 @@ require("header.php");
   </ol>
 </fieldset>
 
+
 <div class="footer_nav">
   <button type="submit">Invia</button>
 </div>
@@ -96,8 +97,8 @@ require("header.php");
 <script>
 (function($){
   // disabilito il campo recall se non è spuntata la checkbox
-  $('#recall').click(function() {
-    var recall = $('#recall').is(':checked');
+  $('#recall, #rinnovo').click(function() {
+    var recall = $('#recall, #rinnovo').is(':checked');
     $('#data_recall').prop('disabled', !(recall));
   });
 
