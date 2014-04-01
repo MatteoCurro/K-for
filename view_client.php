@@ -23,7 +23,8 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
       if ($_SESSION["livello"] == 1 || $_SESSION["user_id"] == $cliente["id_utente"]) {
       ?>
       <a class="button float_r" href="edit_client.php?id=<?php echo $cliente['id']; ?>">Modifica</a>
-      <h1>Visualizza cliente</h1>
+
+      <h1>Visualizza cliente: <?php echo $cliente['nome']; ?> <?php echo $cliente['cognome']; ?></h1>
 
       <ol class="single_view_client">
         <li><strong>Nome:</strong> <?php echo $cliente['nome']; ?></li>
@@ -61,6 +62,26 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
             } // fine foreach per estrarre il nome dell'utente
           } // fine if per estrarre il nome dell'utente
         ?>
+
+        <li><form class="pagamento" name="_xclick" action="https://www.sandbox.paypal.com/it/cgi-bin/webscr" method="post">
+            <strong>Pagamento:</strong>
+
+            <input type="hidden" name="cmd" value="_xclick">
+            <input type="hidden" name="business" value="curromatteo-facilitator@gmail.com">
+            <input type="hidden" name="currency_code" value="EUR">
+            <input type="hidden" name="item_name" value="Materiale corso di inglese">
+            &euro;<input type="text" name="amount" placeholder="Es. 100.00">
+
+            <INPUT TYPE="hidden" NAME="first_name" VALUE="<?php echo $cliente['nome']; ?>">
+            <INPUT TYPE="hidden" NAME="last_name" VALUE="<?php echo $cliente['cognome']; ?>">
+            <INPUT TYPE="hidden" NAME="city" VALUE="<?php echo $cliente['citta']; ?>">
+            <INPUT TYPE="hidden" NAME="state" VALUE="IT">
+            <INPUT TYPE="hidden" NAME="lc" VALUE="IT">
+            <button type="submit">Paga adesso</button>
+          </li>
+        </form>
+
+
       </ol>
       <?php 
       } else {// fine if per controllare se l'utente può visualizzare il cliente corrente
