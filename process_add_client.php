@@ -57,11 +57,12 @@ $dati = array(
 // query che salva i valori precedentemente dichiarati nel database
 $salva = executeQuery("INSERT INTO clienti
 			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, note, codice, rinnovo, data_recall, recall, id_utente)
-	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :note, :codice, :rinnovo :data_recall, :recall, :id_utente);",
+	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :note, :codice, :rinnovo, :data_recall, :recall, :id_utente);",
 	$dati, $conn);
+$id = $conn->lastInsertId();
 
 if ($salva) {
-	header("location: index.php");
+	header("location: view_client.php?id=".$id);
 }
 
 ?>
