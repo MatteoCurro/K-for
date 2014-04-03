@@ -1,17 +1,18 @@
 
 <?php
-/* Set current, prev and next page */
+// Imposto la pagina corrente e quella precedente 
 $prev = ($pagenum - 1);
 $next = ($pagenum + 1);
 
+// resetto la variabile contenente i links della pagination
 $pagination = '';
 
-/* Create a PREV link if there is one */
+// Creo un link per la pagina precedente se ne esiste una 
 if($pagenum > 1) {
 	$pagination .= ' <a href="?'.getCurrentGetParams().'&page='.$prev.'" class="pagination">Precedente</a> ';
 }
 
-/* Loop through the total pages */
+// ciclo tutte le pagine e creo il link
 for($i = 1; $i <= $last; $i++) {
 	if(($pagenum) == $i) {
 	    $pagination .= " <a class='pagination current'>$i</a> ";
@@ -20,9 +21,9 @@ for($i = 1; $i <= $last; $i++) {
 	}
 }
 
-/* Print NEXT link if there is one */
+// creo un link per la pagina successiva se ne esiste una
 if($pagenum < $last) {
 	$pagination .= ' <a href="?'.getCurrentGetParams().'&page='.$next.'" class="pagination">Successiva</a> ';
 }
-
-echo "$pagination";
+// Stampo a video la pagination
+echo $pagination;
