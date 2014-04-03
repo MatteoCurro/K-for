@@ -21,6 +21,10 @@ if (isset( $_GET['data_fine'] ) &&
 	    'data_fine' => date('Y-m-d', strtotime("+7 days"))
 	);
 }
+$conditions = array();
+if (!empty($_GET['citta'])) {
+	  $conditions[] = ' AND citta LIKE "%'.$_GET['citta'].'%"';
+	}
 
 require("header.php");
 
@@ -33,7 +37,20 @@ require("header.php");
 			<label for="data_inizio">Data inizio</label>
 			<input id="data_inizio" name="data_inizio" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_inizio'])); ?>">
 			<label for="data_fine">Data fine</label>
-			<input id="data_fine" name="data_fine" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_fine'])); ?>">
+			<input id="data_fine" name="data_fine" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_fine'])); ?>"><br>
+
+			<label for="citta">Citt&agrave;</label>
+		<select name="citta" id="">
+			<option value="">-Seleziona Citt&agrave;-</option>
+		<?php
+		// effettuo una query per recuperare i dati relativi ai clienti
+			$clienti = query('SELECT DISTINCT citta FROM clienti ORDER BY citta ASC', array(), $conn);
+			if ($clienti) {
+				foreach ($clienti as $cliente) { ?>
+					<option value="<?php echo $cliente['citta']; ?>" <?php if (isset( $_GET['data_fine']) && $cliente['citta'] == $_GET['citta']): ?> selected="selected"<?php endif; ?>><?php echo $cliente['citta']; ?></option>
+				<?php }
+			} ?>
+		</select>
 			<button type="submit">Cerca</button>
 	 </form>
 	<table class="clients">
@@ -53,7 +70,7 @@ require("header.php");
 // effettuo una query per recuperare i dati relativi ai clienti
 	
 
-	$utenti = query("SELECT * FROM clienti WHERE recall = 1 AND data_recall BETWEEN STR_TO_DATE(:data_inizio, '%Y-%m-%d') AND STR_TO_DATE(:data_fine, '%Y-%m-%d') ORDER BY data_recall ASC;", $dati, $conn);
+	$utenti = query("SELECT * FROM clienti WHERE recall = 1 AND data_recall BETWEEN STR_TO_DATE(:data_inizio, '%Y-%m-%d') AND STR_TO_DATE(:data_fine, '%Y-%m-%d') ".implode(" AND ", $conditions)." ORDER BY data_recall ASC;", $dati, $conn);
 	if ($utenti) {
 		// ciclo il cliente
 		foreach ($utenti as $utente) {
