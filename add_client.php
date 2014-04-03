@@ -62,11 +62,27 @@ require("header.php");
       <input id="data_incontro" name="data_incontro" type="date" placeholder="">
     </li>
     <li>
+      <label for="codice_contratto">Codice contratto</label>
+      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci codice contratto">
+    </li>
+    <li>
+      <label for="importo_contratto">Importo contratto</label>
+      <input id="importo_contratto" name="importo_contratto" type="number" step="any" min="0" placeholder="Es. 600.00" x-moz-errormessage="Inserisci l'importo del contratto">
+    </li>
+    <li>
+      <label for="modalita_pagamento">Modalit&agrave; Pagamento</label>
+      <select name="modalita_pagamento" required x-moz-errormessage="Inserisci la modalità di pagamento">
+        <option value="1" selected="selected">Contrassegno</option>
+        <option value="2">Bonifico anticipato</option>
+        <option value="3">Online</option>
+      </select>
+    </li>
+    <li>
       <label for="note">Note</label>
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."></textarea>
     </li>
     <li>
-      <label for="codice">Codice</label>
+      <label for="codice">Codice utente/corso</label>
       <input id="codice" name="codice" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci il codice">
     </li>
     <li>

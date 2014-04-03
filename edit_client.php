@@ -81,6 +81,22 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         ?>">
     </li>
     <li>
+      <label for="codice_contratto">Codice contratto</label>
+      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci codice contratto" value="<?php echo $cliente['codice_contratto']; ?>">
+    </li>
+    <li>
+      <label for="importo_contratto">Importo contratto</label>
+      <input id="importo_contratto" name="importo_contratto" type="number" step="any" min="0" placeholder="Es. 600.00" x-moz-errormessage="Inserisci l'importo del contratto" value="<?php echo $cliente['importo_contratto']; ?>">
+    </li>
+    <li>
+      <label for="modalita_pagamento">Modalit&agrave; Pagamento</label>
+      <select name="modalita_pagamento" required x-moz-errormessage="Inserisci la modalità di pagamento">
+        <option value="1" <?php if ($cliente['modalita_pagamento'] == "1"): ?> selected="selected"<?php endif; ?>>Contrassegno</option>
+        <option value="2" <?php if ($cliente['modalita_pagamento'] == "2"): ?> selected="selected"<?php endif; ?>>Bonifico anticipato</option>
+        <option value="3" <?php if ($cliente['modalita_pagamento'] == "3"): ?> selected="selected"<?php endif; ?>>Online</option>
+      </select>
+    </li>
+    <li>
       <label for="note">Note</label>
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."><?php echo $cliente['note']; ?></textarea>
     </li>

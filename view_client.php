@@ -42,8 +42,29 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         <li><strong>Data incontro:</strong> <?php 
                 echo date('d/m/Y',strtotime($cliente['data_incontro'])); 
               ?></li>
+        <li><strong>Codice contratto:</strong> <?php echo $cliente['codice_contratto']; ?></li>
+        <li><strong>Importo contratto:</strong> &euro; <?php echo number_format((float)$cliente['importo_contratto'], 2, '.', ''); ?></li>
+        <li><strong>Modalit&agrave; pagamento:</strong> <?php 
+        switch ($cliente['modalita_pagamento']) {
+          case '1':
+            echo 'Contrassegno';
+            break;
+
+          case '2':
+            echo 'Bonifico anticipato';
+            break;
+
+          case '3':
+            echo 'Online';
+            break;
+          
+          default:
+            echo 'N/D';
+            break;
+        }
+        ?></li>
         <li><strong>Note:</strong> <?php echo $cliente['note']; ?></li>
-        <li><strong>Codice:</strong> <?php echo $cliente['codice']; ?></li>
+        <li><strong>Codice utente/corso:</strong> <?php echo $cliente['codice']; ?></li>
         <li><strong>Rinnovo:</strong> <?php echo $cliente['rinnovo'] ? 'Si' : 'No'; ?></li>
         <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
         <li><strong>Data recall:</strong> <?php 

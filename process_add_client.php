@@ -16,6 +16,9 @@ $citta = assignToVar('citta');
 $indirizzo = assignToVar('indirizzo');
 $data_incontro = assignToVar('data_incontro');
 $note = assignToVar('note');
+$codice_contratto = assignToVar('codice_contratto');
+$importo_contratto = assignToVar('importo_contratto');
+$modalita_pagamento = assignToVar('modalita_pagamento');
 $codice = assignToVar('codice');
 $rinnovo = isset($_POST["rinnovo"]) ? $_POST["rinnovo"] : 0;
 $data_recall = assignToVar('data_recall');
@@ -47,6 +50,9 @@ $dati = array(
 	'indirizzo'				=>		$indirizzo,
 	'data_incontro'			=>		$data_incontro,
 	'note'					=>		$note,
+	'codice_contratto'		=>		$codice_contratto,
+	'importo_contratto'		=>		$importo_contratto,
+	'modalita_pagamento'	=>		$modalita_pagamento,
 	'codice'				=>		$codice,
 	'rinnovo'				=>		$rinnovo,
 	'data_recall'			=>		$data_recall,
@@ -56,8 +62,8 @@ $dati = array(
 
 // query che salva i valori precedentemente dichiarati nel database
 $salva = executeQuery("INSERT INTO clienti
-			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, note, codice, rinnovo, data_recall, recall, id_utente)
-	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :note, :codice, :rinnovo, :data_recall, :recall, :id_utente);",
+			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, codice_contratto, importo_contratto, modalita_pagamento, note, codice, rinnovo, data_recall, recall, id_utente)
+	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :codice_contratto, :importo_contratto, :modalita_pagamento, :note, :codice, :rinnovo, :data_recall, :recall, :id_utente);",
 	$dati, $conn);
 $id = $conn->lastInsertId();
 
