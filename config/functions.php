@@ -7,3 +7,17 @@ function view($path, $data = null)
 	}
 	include "views/{$path}.view.php";
 }
+
+function getCurrentGetParams() {
+	if (!empty($_GET)) {
+		$link = '';
+	    // Loop through the parameters
+	    foreach ($_GET as $parameter => $value) {
+	    	if($parameter != 'page') {
+	      		// Append the parameter and its value to the new path
+	      		$link .= "&" . $parameter . "=" . urlencode($value);
+	  		}
+	    }
+	    return $link;
+	}
+}
