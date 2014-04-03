@@ -52,12 +52,18 @@
 		$conditions[] = 'recall = 0';
 	}
 
+	require('pagination.php');
+
+
+
 	// se l'array $conditions non è vuoto imposto la query di ricerca altrimenti una standard
 	if(count($conditions)) {
-	    $query = 'SELECT * FROM clienti WHERE '.implode(' AND ', $conditions).' ORDER BY id DESC';
+	    $query = "SELECT * FROM clienti WHERE ".implode(" AND ", $conditions)." ORDER BY id DESC $max";
 	} else {
-		$query = 'SELECT * FROM clienti ORDER BY id DESC LIMIT 200';
+		$query = "SELECT * FROM clienti ORDER BY id DESC $max";
 	}
+
+	
 
 	// echo $query;
 	// effettuo una query per recuperare i dati relativi ai clienti
