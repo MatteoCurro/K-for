@@ -6,21 +6,6 @@ $next = ($pagenum + 1);
 
 $pagination = '';
 
-
-function getCurrentGetParams() {
-	if (!empty($_GET)) {
-		$link = '';
-	    // Loop through the parameters
-	    foreach ($_GET as $parameter => $value) {
-	    	if($parameter != 'page') {
-	      		// Append the parameter and its value to the new path
-	      		$link .= "&" . $parameter . "=" . urlencode($value);
-	  		}
-	    }
-	    return $link;
-	}
-}
-
 /* Create a PREV link if there is one */
 if($pagenum > 1) {
 	$pagination .= ' <a href="?'.getCurrentGetParams().'&page='.$prev.'" class="pagination">Precedente</a> ';
