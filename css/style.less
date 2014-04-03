@@ -474,6 +474,30 @@ table.clients {
 		width: 50%;
 	}
 
+.pagination {
+	padding: 5px 10px;
+	background-color: #ccc;
+	color: #444;
+	text-decoration: none;
+	text-transform: uppercase;
+	font-size: .8em;
+	cursor: pointer;
+	border-radius: 2px;
+
+	&:hover {
+		background-color: darken(#ccc, 10%)
+	}
+
+	&.current {
+		background-color: #009245;
+		color: #fff;
+
+		&:hover {
+			background-color: darken(#009245, 10%)
+		}
+	}
+}
+
 @media print {
 
 	.button {
