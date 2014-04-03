@@ -54,6 +54,7 @@ require("header.php");
 		<?php }
 	} ?>
 	</table>
+	<?php require('pagination_links.php'); ?>
 	</div>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 <script>
