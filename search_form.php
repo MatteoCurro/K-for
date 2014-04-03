@@ -6,7 +6,7 @@
 		<label for="cognome">Cognome</label>
 		<input type="text" name="cognome" placeholder="Cognome">
 		<label for="codice">Codice</label>
-		<input type="text" name="codice" placeholder="Codice">
+		<input type="text" name="codice" placeholder="Codice utente/corso">
 		</div>
 
 		<div class="left-50">
