@@ -84,11 +84,11 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
           } // fine if per estrarre il nome dell'utente
         ?>
 
-        <li><form class="pagamento" name="_xclick" action="https://www.sandbox.paypal.com/it/cgi-bin/webscr" method="post">
+        <li><form class="pagamento" name="_xclick" action="https://www.paypal.com/it/cgi-bin/webscr" method="post">
             <strong>Pagamento:</strong>
 
             <input type="hidden" name="cmd" value="_xclick">
-            <input type="hidden" name="business" value="curromatteo-facilitator@gmail.com">
+            <input type="hidden" name="business" value="amministrazione@k-for.it">
             <input type="hidden" name="currency_code" value="EUR">
             <input type="hidden" name="item_name" value="Materiale corso di inglese">
             &euro;<input type="text" name="amount" placeholder="Es. 100.00">
