@@ -2,7 +2,7 @@
 session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
 if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
-
+require("config.php");
 require("header.php");
 
 ?>
@@ -24,7 +24,7 @@ require("header.php");
     </li>
     <li>
       <label for="email">E-mail</label>
-      <input id="email" name="email" type="email" placeholder="Es. mrossi@gmail.com" required x-moz-errormessage="Inserisci l'e-mail">
+      <input id="email" name="email" type="email" placeholder="Es. mrossi@gmail.com" x-moz-errormessage="Inserisci l'e-mail">
     </li>
 
     <br><br>
@@ -43,8 +43,9 @@ require("header.php");
     <li>
       <label for="livello">Ruolo</label>
       <select name="livello" required x-moz-errormessage="Inserisci il ruolo">
-        <option value="1" selected="selected">Admin</option>
-        <option value="2">Agente</option>
+        <option value="0">Super Admin</option>
+        <option value="1">Admin</option>
+        <option value="2" selected="selected">Agente</option>
         <option value="3">Insegnante</option>
       </select>
     </li>
