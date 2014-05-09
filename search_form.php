@@ -22,7 +22,7 @@
 				<?php }
 			} ?>
 		</select><br>
-		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) { ?>
+		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] <= 1) { ?>
 		<label for="user_id">Utente</label>
 		<select name="user_id" id="">
 			<option value="">-Seleziona Utente-</option>
@@ -35,8 +35,14 @@
 				<?php }
 			} ?>
 		</select><br>
-		<label for="recall">Recall</label>
-		<input name="recall" type="checkbox" value="1">
+		<label for="type"></label>
+		<!-- <input name="recall" type="checkbox" value="1"> -->
+		<input type="radio" name="type" value="all" checked>Tutti&nbsp;&nbsp;
+		<input type="radio" name="type" value="recall">Recall&nbsp;&nbsp;
+		<input type="radio" name="type" value="renewals">Renewals<br>
+		<label for="type"></label>
+		<input type="radio" name="type" value="active">Clienti confermati
+		
 		<?php } ?>
 		</div>
 		<button type="submit">Cerca</button>

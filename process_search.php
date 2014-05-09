@@ -16,7 +16,7 @@
 	$codice = assignToVar('codice');
 	$citta = assignToVar('citta');
 	$id_utente = assignToVar('user_id');
-	$recall = isset($_GET["recall"]) ? $_GET["recall"] : 0;
+	$type = isset($_GET["type"]) ? $_GET["type"] : 0;
 
 	// popolazione dell'array $conditions se i valori non sono vuoti
 	if (!empty($nome)) {
@@ -44,9 +44,24 @@
 	// ai soli clienti che non sono recall
 	// NB: di default la ricerca viene effettuata per i clienti acquisiti
 	// mentre vengono ignorati i recall
-	if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) {
-		if (isset($recall)) {
-		  $conditions[] = 'recall = '.$recall.'';
+	if (isset($_SESSION["livello"]) && $_SESSION["livello"] <= 1) {
+		if (isset($type)) {
+			switch ($type) {
+				case 'recall':
+					$conditions[] = 'recall = 1';
+					break;
+				case 'renewals':
+					$conditions[] = 'rinnovo = 1';
+					break;
+				case 'active':
+					$conditions[] = 'recall = 0';
+					$conditions[] = 'rinnovo = 0';
+					break;
+				default:
+					# non faccio nulla e seleziono tutti i clienti
+					break;
+			}
+				// $conditions[] = 'recall = '.$recall.'';
 		}
 	} else {
 		$conditions[] = 'recall = 0';
