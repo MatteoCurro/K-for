@@ -20,7 +20,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
     // ciclo il cliente
     foreach ($clienti as $cliente) {
       // visualizza il cliente solamente se l'utente corrente è admin o è l'autore del cliente selezionato
-      if ($_SESSION["livello"] == 1 || $_SESSION["user_id"] == $cliente["id_utente"]) {
+      if ($_SESSION["livello"] <= 1 || $_SESSION["user_id"] == $cliente["id_utente"]) {
       ?>
       <a class="button float_r" href="edit_client.php?id=<?php echo $cliente['id']; ?>">Modifica</a>
 
