@@ -16,7 +16,8 @@
 	$codice = assignToVar('codice');
 	$citta = assignToVar('citta');
 	$id_utente = assignToVar('user_id');
-	$type = isset($_GET["type"]) ? $_GET["type"] : 0;
+	$type = assignToVar("type");
+	// isset($_GET["type"]) ? $_GET["type"] : 0;
 
 	// popolazione dell'array $conditions se i valori non sono vuoti
 	if (!empty($nome)) {
@@ -46,6 +47,9 @@
 	// mentre vengono ignorati i recall
 	if (isset($_SESSION["livello"]) && $_SESSION["livello"] <= 1) {
 		if (isset($type)) {
+			// Verifico che tipo di clienti si vuole cercare
+			// confrontando il valore del radio button
+			// e assegnando la query corretta
 			switch ($type) {
 				case 'recall':
 					$conditions[] = 'recall = 1';
@@ -55,14 +59,16 @@
 					break;
 				case 'active':
 					$conditions[] = 'recall = 0';
-					$conditions[] = 'rinnovo = 0';
+					break;
+				case 'all':
+					// non faccio nulla e seleziono tutti i clienti
 					break;
 				default:
-					# non faccio nulla e seleziono tutti i clienti
+					$conditions[] = 'recall = 0';
 					break;
-			}
-				// $conditions[] = 'recall = '.$recall.'';
-		}
+			} 
+				
+		} 
 	} else {
 		$conditions[] = 'recall = 0';
 	}

@@ -41,7 +41,7 @@
 		<input type="radio" name="type" value="recall">Recall&nbsp;&nbsp;
 		<input type="radio" name="type" value="renewals">Renewals<br>
 		<label for="type"></label>
-		<input type="radio" name="type" value="active">Clienti confermati
+		<input type="radio" name="type" value="active">Iscritti
 		
 		<?php } ?>
 		</div>
