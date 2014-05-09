@@ -33,7 +33,7 @@
 	}
 	// se l'utente è admin permetto la ricerca altrimenti la limito
 	// ai soli clienti aggiunti dall'utente corrente
-	if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) {
+	if (isset($_SESSION["livello"]) && $_SESSION["livello"] <= 1) {
 		if (!empty($id_utente)) {
 		  $conditions[] = 'id_utente = "'.$id_utente.'"';
 		}
