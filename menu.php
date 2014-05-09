@@ -10,16 +10,17 @@
 <nav>
 	<ul>
 	<?php 
+
 		if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] === true) {
 	?>
 		<li><a href="clients.php">Clienti</a></li>
 
-		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 1 || $_SESSION["livello"] == 3)) { ?>
-			<li><a href="renewal.php">Renewals</a></li>
+		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] <= 1 || $_SESSION["livello"] == 3)) { ?>
+			<li><a href="renewal.php">Renewals</a><?php echo getAlertView('renewals', 31, $conn); ?></li>
 		<?php } ?>
 
-		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] == 1) { ?>
-			<li><a href="reminder.php">Reminder</a></li>
+		<?php if (isset($_SESSION["livello"]) && $_SESSION["livello"] <= 1) { ?>
+			<li><a href="reminder.php">Reminder</a><?php echo getAlertView('recall', 31, $conn); ?></li>
 			<li><a href="users.php">Utenti</a></li>
 		<?php } ?>
 
