@@ -2,9 +2,8 @@
 session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
 if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
-
-require("header.php");
 require 'config.php';
+require("header.php");
 
 // varifico che sia stato un valore tramite get dell'id del cliente
 if ( isset($_GET['id']) && !empty($_GET['id']) ) {
@@ -38,7 +37,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
     </li>
     <li>
       <label for="email">E-mail</label>
-      <input id="email" name="email" type="email" placeholder="Es. mrossi@gmail.com" required x-moz-errormessage="Inserisci l'e-mail" value="<?php echo $utente['email']; ?>">
+      <input id="email" name="email" type="email" placeholder="Es. mrossi@gmail.com" x-moz-errormessage="Inserisci l'e-mail" value="<?php echo $utente['email']; ?>">
     </li>
 
     <br><br>
@@ -57,6 +56,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
     <li>
       <label for="livello">Ruolo</label>
       <select name="livello" required x-moz-errormessage="Inserisci il ruolo">
+        <option value="0" <?php if ($utente['livello'] == "0"): ?> selected="selected"<?php endif; ?>>Super Admin</option>
         <option value="1" <?php if ($utente['livello'] == "1"): ?> selected="selected"<?php endif; ?>>Admin</option>
         <option value="2" <?php if ($utente['livello'] == "2"): ?> selected="selected"<?php endif; ?>>Agente</option>
         <option value="3" <?php if ($utente['livello'] == "3"): ?> selected="selected"<?php endif; ?>>Insegnante</option>
