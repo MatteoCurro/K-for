@@ -17,8 +17,8 @@ if (isset( $_GET['data_fine'] ) &&
 
 } else {
 	$dati =  array(
-	    'data_inizio' => date('Y-m-d'),
-	    'data_fine' => date('Y-m-d', strtotime("+7 days"))
+	    'data_inizio' => date('Y-m-d', strtotime("-365 days")),
+	    'data_fine' => date('Y-m-d', strtotime("+31 days"))
 	);
 }
 $conditions = array();
