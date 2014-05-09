@@ -21,3 +21,11 @@ function getCurrentGetParams() {
 	    return $link;
 	}
 }
+
+function getAlertView($type, $days, $conn) {
+	$alert = getAlert($type, $days, $conn);
+	if ($alert) {
+		return '<span class="alert">'.$alert.'</span>';
+	}
+}
+
