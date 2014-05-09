@@ -19,7 +19,9 @@ require("header.php");
 		<th>Cognome</th>
 		<th>Username</th>
 		<th></th>
+		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 )) { ?>
 		<th></th>
+		<?php } ?>
 		</tr>
 
 <?php
@@ -36,7 +38,13 @@ require("header.php");
 			<td><?php echo $utente['cognome']; ?></td>
 			<td><?php echo $utente['username']; ?></td>
 			<td><a class="button" href="edit_user.php?id=<?php echo $utente['id']; ?>">Edit</a></td>
+			<?php 
+			if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 ) && $utente['livello'] != 0) { 
+				?>
 			<td><a class="button red delete" href="delete_user.php?id=<?php echo $utente['id']; ?>">Delete</a></td>
+			<?php } else { ?>
+				<td></td>
+			<?php }?>
 		</tr>
 		<?php }
 	} ?>

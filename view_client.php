@@ -3,8 +3,8 @@ session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
 if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
 
-require("header.php");
 require('config.php');
+require("header.php");
 // varifico che sia stato un valore tramite get dell'id del cliente
 if ( isset($_GET['id']) && !empty($_GET['id']) ) {
   $id = (int)htmlspecialchars($_GET['id']);

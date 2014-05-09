@@ -2,7 +2,7 @@
 ob_start();
 session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
-if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true  && ($_SESSION["livello"] == 1 || $_SESSION["livello"] == 3)) {
+if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true  && ($_SESSION["livello"] <= 1 || $_SESSION["livello"] == 3)) {
 
 require('config.php');
 
@@ -46,7 +46,9 @@ require("header.php");
 		<th>Data recall</th>
 		<th></th>
 		<th></th>
+		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 )) { ?>
 		<th></th>
+		<?php } ?>
 		</tr>
 
 <?php
@@ -74,7 +76,9 @@ require("header.php");
 				?></strong></td>
 			<td><a class="button" href="view_client.php?id=<?php echo $utente['id']; ?>">View</a></td>
 			<td><a class="button" href="edit_client.php?id=<?php echo $utente['id']; ?>">Edit</a></td>
+			<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 )) { ?>
 			<td><a class="button red delete" href="delete_client.php?id=<?php echo $utente['id']; ?>">Delete</a></td>
+			<?php } ?>
 		</tr>
 		<?php }
 	} else { echo "<tr><td colspan='9'>Nessun cliente da richiamare!</td></tr>";}?>
