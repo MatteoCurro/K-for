@@ -3,8 +3,8 @@ session_start();
 // visualizzo il contenuto della pagina solo se è stato effettuato il login
 if (isset($_SESSION["user_logedIn"]) && $_SESSION["user_logedIn"] == true) {
 
+require("config.php");
 require("header.php");
-
 ?>
 
 <div class="wrapper">
@@ -28,34 +28,34 @@ require("header.php");
     </li>
     <li>
       <label for="componenti_nucleo">Componenti nucleo familiare</label>
-      <input id="componenti_nucleo" name="componenti_nucleo" type="number" placeholder="Es. 7" required x-moz-errormessage="Inserisci il numero di componenti del nucleo" min="1" max="10">
+      <input id="componenti_nucleo" name="componenti_nucleo" type="number" placeholder="Es. 7" x-moz-errormessage="Inserisci il numero di componenti del nucleo" min="1" max="10">
     </li>
     <li>
       <label for="persona_interessata">Persona Interessata</label>
-      <input id="persona_interessata" name="persona_interessata" type="text" placeholder="Es. Il figlio" required x-moz-errormessage="Inserisci la persona interessata">
+      <input id="persona_interessata" name="persona_interessata" type="text" placeholder="Es. Il figlio" x-moz-errormessage="Inserisci la persona interessata">
     </li>
     <li>
       <label for="professione">Professione</label>
-      <input id="professione" name="professione" type="text" placeholder="Es. Impiegato" required x-moz-errormessage="Inserisci la professione">
+      <input id="professione" name="professione" type="text" placeholder="Es. Impiegato" x-moz-errormessage="Inserisci la professione">
     </li>
 
     <br><br>
 
     <li>
       <label for="citta">Citt&agrave;</label>
-      <input id="citta" name="citta" type="text" placeholder="Es. Milano" required x-moz-errormessage="Inserisci la città">
+      <input id="citta" name="citta" type="text" placeholder="Es. Milano" x-moz-errormessage="Inserisci la città">
     </li>
     <li>
       <label for="indirizzo">Indirizzo</label>
-      <input id="indirizzo" name="indirizzo" type="text" placeholder="Es. Via Roma, 1" required x-moz-errormessage="Inserisci l'indirizzo'">
+      <input id="indirizzo" name="indirizzo" type="text" placeholder="Es. Via Roma, 1" x-moz-errormessage="Inserisci l'indirizzo'">
     </li>
     <li>
       <label for="tel_fisso">Telefono fisso</label>
-      <input id="tel_fisso" name="tel_fisso" type="tel" placeholder="Es. 3471223345" required x-moz-errormessage="Inserisci il numero di telefono fisso">
+      <input id="tel_fisso" name="tel_fisso" type="tel" placeholder="Es. 0422124353" x-moz-errormessage="Inserisci il numero di telefono fisso">
     </li>
     <li>
       <label for="tel_cell">Telefono cellulare</label>
-      <input id="tel_cell" name="tel_cell" type="tel" placeholder="Es. 0422124353" required x-moz-errormessage="Inserisci il numero di telefono fisso">
+      <input id="tel_cell" name="tel_cell" type="tel" placeholder="Es. 3471223345" x-moz-errormessage="Inserisci il numero di telefono fisso">
     </li>
     <li>
       <label for="data_incontro">Data Incontro</label>
@@ -71,7 +71,7 @@ require("header.php");
     </li>
     <li>
       <label for="modalita_pagamento">Modalit&agrave; Pagamento</label>
-      <select name="modalita_pagamento" required x-moz-errormessage="Inserisci la modalità di pagamento">
+      <select name="modalita_pagamento" x-moz-errormessage="Inserisci la modalità di pagamento">
         <option value="1" selected="selected">Contrassegno</option>
         <option value="2">Bonifico anticipato</option>
         <option value="3">Online</option>
