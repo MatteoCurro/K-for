@@ -64,3 +64,30 @@ function get_by_id($id, $table, $conn)
 		$conn
 	);
 }
+
+function getAlert($type, $days, $conn) {
+	
+	switch ($type) {
+		case 'recall':
+			$dati =  array(
+			    'recall_days' => $days
+		  	);
+		  	
+			$utenti = query("SELECT COUNT(*) FROM clienti WHERE recall = 1 AND data_recall <= DATE_ADD(CURDATE(),INTERVAL :recall_days DAY);", $dati, $conn);
+			return $utenti[0][0];
+			break;
+
+		case 'renewals':
+			$dati =  array(
+			    'recall_days' => $days
+		  	);
+		  	
+			$utenti = query("SELECT COUNT(*) FROM clienti WHERE rinnovo = 1 AND data_recall <= DATE_ADD(CURDATE(),INTERVAL :recall_days DAY);", $dati, $conn);
+			return $utenti[0][0];
+			break;
+		
+		default:
+			# code...
+			break;
+	}
+}
