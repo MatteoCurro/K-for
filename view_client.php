@@ -78,7 +78,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
             foreach ($utenti as $utente) {
 
               ?>
-          <li><strong>Aggiunto / modificato da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
+          <li><strong>Aggiunto da:</strong> <?php echo $utente['nome'].' '.$utente['cognome']; ?></li>
           <?php 
             } // fine foreach per estrarre il nome dell'utente
           } // fine if per estrarre il nome dell'utente
