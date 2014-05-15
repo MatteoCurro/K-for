@@ -23,7 +23,7 @@ $codice = assignToVar('codice');
 $rinnovo = isset($_POST["rinnovo"]) ? $_POST["rinnovo"] : 0;
 $data_recall = assignToVar('data_recall');
 $recall = isset($_POST["recall"]) ? $_POST["recall"] : 0;;
-$id_utente = $_SESSION['user_id'];
+// $id_utente = $_SESSION['user_id'];
 $id = (int)htmlspecialchars($_GET['id']);
 
 
@@ -58,7 +58,7 @@ $dati = array(
 	'rinnovo'				=>		$rinnovo,
 	'data_recall'			=>		$data_recall,
 	'recall'				=>		$recall,
-	'id_utente'				=>		$id_utente,
+	// 'id_utente'				=>		$id_utente,
 	'id'					=>		$id
 );
 
@@ -82,8 +82,8 @@ $salva = executeQuery("UPDATE clienti SET
 			codice = :codice,
 			rinnovo = :rinnovo,
 			data_recall = :data_recall, 
-			recall = :recall, 
-			id_utente = :id_utente 
+			recall = :recall 
+			-- id_utente = :id_utente 
 			WHERE id = :id",
 	$dati, $conn);
 
