@@ -43,7 +43,9 @@ require("header.php");
     <li>
       <label for="livello">Ruolo</label>
       <select name="livello" required x-moz-errormessage="Inserisci il ruolo">
-        <option value="0">Super Admin</option>
+        <?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0)) { ?>
+          <option value="0">Super Admin</option>
+        <?php } ?>
         <option value="1">Admin</option>
         <option value="2" selected="selected">Agente</option>
         <option value="3">Insegnante</option>

@@ -56,7 +56,9 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
     <li>
       <label for="livello">Ruolo</label>
       <select name="livello" required x-moz-errormessage="Inserisci il ruolo">
-        <option value="0" <?php if ($utente['livello'] == "0"): ?> selected="selected"<?php endif; ?>>Super Admin</option>
+        <?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0)) { ?>
+          <option value="0" <?php if ($utente['livello'] == "0"): ?> selected="selected"<?php endif; ?>>Super Admin</option>
+        <?php } ?>
         <option value="1" <?php if ($utente['livello'] == "1"): ?> selected="selected"<?php endif; ?>>Admin</option>
         <option value="2" <?php if ($utente['livello'] == "2"): ?> selected="selected"<?php endif; ?>>Agente</option>
         <option value="3" <?php if ($utente['livello'] == "3"): ?> selected="selected"<?php endif; ?>>Insegnante</option>
