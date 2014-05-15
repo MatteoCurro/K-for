@@ -82,8 +82,8 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         ?>">
     </li>
     <li>
-      <label for="codice_contratto">Codice contratto</label>
-      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci codice contratto" value="<?php echo $cliente['codice_contratto']; ?>">
+      <label for="codice_contratto">Codice contratto / Iscrizione</label>
+      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. H 0002020" x-moz-errormessage="Inserisci codice contratto" value="<?php echo $cliente['codice_contratto']; ?>">
     </li>
     <li>
       <label for="importo_contratto">Importo contratto</label>
@@ -92,8 +92,8 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
     <li>
       <label for="modalita_pagamento">Modalit&agrave; Pagamento</label>
       <select name="modalita_pagamento" x-moz-errormessage="Inserisci la modalità di pagamento">
-        <option value="1" <?php if ($cliente['modalita_pagamento'] == "1"): ?> selected="selected"<?php endif; ?>>Contrassegno</option>
-        <option value="2" <?php if ($cliente['modalita_pagamento'] == "2"): ?> selected="selected"<?php endif; ?>>Bonifico anticipato</option>
+        <option value="1" <?php if ($cliente['modalita_pagamento'] == "1"): ?> selected="selected"<?php endif; ?>>Contrassegno / Assegno</option>
+        <option value="2" <?php if ($cliente['modalita_pagamento'] == "2"): ?> selected="selected"<?php endif; ?>>Bonifico anticipato / Contanti</option>
         <option value="3" <?php if ($cliente['modalita_pagamento'] == "3"): ?> selected="selected"<?php endif; ?>>Online</option>
       </select>
     </li>
@@ -102,19 +102,21 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."><?php echo $cliente['note']; ?></textarea>
     </li>
     <li>
-      <label for="codice">Codice</label>
-      <input id="codice" name="codice" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci il codice" value="<?php echo $cliente['codice']; ?>">
+      <label for="codice">Codice corso</label>
+      <input id="codice" name="codice" type="text" placeholder="Es. 000311" x-moz-errormessage="Inserisci il codice" value="<?php echo $cliente['codice']; ?>">
     </li>
-    <li>
-      <label for="rinnovo">Rinnovo?</label>
-      <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?" <?php if ($cliente['rinnovo']) { echo 'checked';}; ?>>
-    </li>
+    <?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] != 2)) { ?>
+      <li>
+        <label for="rinnovo">Rinnovo?</label>
+        <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?" <?php if ($cliente['rinnovo']) { echo 'checked';}; ?>>
+      </li>
+    <?php } ?>
     <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?" <?php if ($cliente['recall']) { echo 'checked';}; ?>>
     </li>
     <li>
-      <label for="data_recall">Data Recall</label>
+      <label for="data_recall">Data Recall / Rinnovo</label>
       <input id="data_recall" name="data_recall" type="date" placeholder="" value="<?php 
           $data = strtotime($cliente['data_recall']);
           echo date('Y-m-d',$data); 

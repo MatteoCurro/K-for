@@ -62,8 +62,8 @@ require("header.php");
       <input id="data_incontro" name="data_incontro" type="date" placeholder="">
     </li>
     <li>
-      <label for="codice_contratto">Codice contratto</label>
-      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci codice contratto">
+      <label for="codice_contratto">Codice contratto / Iscrizione</label>
+      <input id="codice_contratto" name="codice_contratto" type="text" placeholder="Es. H 0002020" x-moz-errormessage="Inserisci codice contratto">
     </li>
     <li>
       <label for="importo_contratto">Importo contratto</label>
@@ -72,8 +72,8 @@ require("header.php");
     <li>
       <label for="modalita_pagamento">Modalit&agrave; Pagamento</label>
       <select name="modalita_pagamento" x-moz-errormessage="Inserisci la modalità di pagamento">
-        <option value="1" selected="selected">Contrassegno</option>
-        <option value="2">Bonifico anticipato</option>
+        <option value="1" selected="selected">Contrassegno / Assegno</option>
+        <option value="2">Bonifico anticipato / Contanti</option>
         <option value="3">Online</option>
       </select>
     </li>
@@ -82,19 +82,21 @@ require("header.php");
       <textarea id="note" name="note" placeholder="Es. Acconto &euro;100."></textarea>
     </li>
     <li>
-      <label for="codice">Codice utente/corso</label>
-      <input id="codice" name="codice" type="text" placeholder="Es. AB123" x-moz-errormessage="Inserisci il codice">
+      <label for="codice">Codice corso</label>
+      <input id="codice" name="codice" type="text" placeholder="Es. 000311" x-moz-errormessage="Inserisci il codice">
     </li>
-    <li>
-      <label for="rinnovo">Rinnovo?</label>
-      <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?">
-    </li>
+    <?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] != 2)) { ?>
+      <li>
+        <label for="rinnovo">Rinnovo?</label>
+        <input id="rinnovo" name="rinnovo" type="checkbox" value="1" placeholder="E' un rinnovo?">
+      </li>
+    <?php } ?>
     <li>
       <label for="recall">Recall?</label>
       <input id="recall" name="recall" type="checkbox" value="1" placeholder="Va richiamato?">
     </li>
     <li>
-      <label for="data_recall">Data Recall</label>
+      <label for="data_recall">Data Recall / Rinnovo</label>
       <input id="data_recall" name="data_recall" type="date" placeholder="" disabled>
     </li>
   </ol>
