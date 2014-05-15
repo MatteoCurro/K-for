@@ -26,7 +26,7 @@ require("header.php");
 		<th>Data</th>
 		<th></th>
 		<th></th>
-		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 )) { ?>
+		<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] <= 1 )) { ?>
 		<th></th>
 		<?php } ?>
 		</tr>
@@ -51,7 +51,7 @@ require("header.php");
 				?></td>
 			<td><a class="button" href="view_client.php?id=<?php echo $cliente['id']; ?>">View</a></td>
 			<td><a class="button" href="edit_client.php?id=<?php echo $cliente['id']; ?>">Edit</a></td>
-			<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] == 0 )) { ?>
+			<?php if (isset($_SESSION["livello"]) && ($_SESSION["livello"] <= 1 )) { ?>
 			<td><a class="button red delete" href="delete_client.php?id=<?php echo $cliente['id']; ?>">Delete</a></td>
 			<?php } ?>
 		</tr>
@@ -90,7 +90,7 @@ $('.delete').on('click', function (e) {
 require('footer.php');
 // fine verifica login
 } else {
-	header('LOCATION:clients_restricted.php'); 
+	header('LOCATION:login.php'); 
     die();
 }
 ?>
