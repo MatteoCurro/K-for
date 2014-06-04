@@ -21,6 +21,10 @@ if (isset( $_GET['data_fine'] ) &&
 	    'data_fine' => date('Y-m-d', strtotime("+31 days"))
 	);
 }
+$conditions = array();
+if (!empty($_GET['priorita'])) {
+	  $conditions[] = ' AND priorita = "'.$_GET['priorita'].'"';
+	}
 
 require("header.php");
 
@@ -34,6 +38,15 @@ require("header.php");
 			<input id="data_inizio" name="data_inizio" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_inizio'])); ?>">
 			<label for="data_fine">Data fine</label>
 			<input id="data_fine" name="data_fine" type="date" value="<?php echo date('Y-m-d', strtotime($dati['data_fine'])); ?>">
+		<br>
+		<label for="priorita">Priorit&agrave;</label>
+		<select name="priorita" id="">
+			<option value="">-Seleziona Priorit&agrave;-</option>
+			<option value="1">Bassa</option>
+			<option value="2">Normale</option>
+			<option value="3">Alta</option>
+		</select>
+
 			<button type="submit">Cerca</button>
 	 </form>
 	<table class="clients">
@@ -55,7 +68,7 @@ require("header.php");
 // effettuo una query per recuperare i dati relativi ai clienti
 	
 
-	$utenti = query("SELECT * FROM clienti WHERE rinnovo = 1 AND data_recall BETWEEN STR_TO_DATE(:data_inizio, '%Y-%m-%d') AND STR_TO_DATE(:data_fine, '%Y-%m-%d') ORDER BY data_recall ASC;", $dati, $conn);
+	$utenti = query("SELECT * FROM clienti WHERE rinnovo = 1 AND data_recall BETWEEN STR_TO_DATE(:data_inizio, '%Y-%m-%d') AND STR_TO_DATE(:data_fine, '%Y-%m-%d') ".implode(" AND ", $conditions)." ORDER BY data_recall ASC;", $dati, $conn);
 	if ($utenti) {
 		// ciclo il cliente
 		foreach ($utenti as $utente) {

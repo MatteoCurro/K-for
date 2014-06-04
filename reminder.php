@@ -26,6 +26,10 @@ if (!empty($_GET['citta'])) {
 	  $conditions[] = ' AND citta LIKE "%'.$_GET['citta'].'%"';
 	}
 
+if (!empty($_GET['priorita'])) {
+	  $conditions[] = ' AND priorita = "'.$_GET['priorita'].'"';
+	}
+
 require("header.php");
 
 ?>
@@ -50,6 +54,14 @@ require("header.php");
 					<option value="<?php echo $cliente['citta']; ?>" <?php if (isset( $_GET['data_fine']) && $cliente['citta'] == $_GET['citta']): ?> selected="selected"<?php endif; ?>><?php echo $cliente['citta']; ?></option>
 				<?php }
 			} ?>
+		</select>
+
+		<label for="priorita">Priorit&agrave;</label>
+		<select name="priorita" id="">
+			<option value="">-Seleziona Priorit&agrave;-</option>
+			<option value="1">Bassa</option>
+			<option value="2">Normale</option>
+			<option value="3">Alta</option>
 		</select>
 			<button type="submit">Cerca</button>
 	 </form>
