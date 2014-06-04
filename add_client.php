@@ -58,6 +58,10 @@ require("header.php");
       <input id="tel_cell" name="tel_cell" type="tel" placeholder="Es. 3471223345" x-moz-errormessage="Inserisci il numero di telefono fisso">
     </li>
     <li>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="Es. mario@rossi.com" x-moz-errormessage="Inserisci l'email">
+    </li>
+    <li>
       <label for="data_incontro">Data Incontro</label>
       <input id="data_incontro" name="data_incontro" type="date" placeholder="">
     </li>
@@ -99,6 +103,14 @@ require("header.php");
       <label for="data_recall">Data Recall / Rinnovo</label>
       <input id="data_recall" name="data_recall" type="date" placeholder="" disabled>
     </li>
+    <li>
+      <label for="priorita">Priorit&agrave;</label>
+      <select name="priorita" id="priorita" x-moz-errormessage="Inserisci la priorità" disabled>
+        <option value="1">Bassa</option>
+        <option value="2" selected="selected">Normale</option>
+        <option value="3">Alta</option>
+      </select>
+    </li>
   </ol>
 </fieldset>
 
@@ -118,6 +130,8 @@ require("header.php");
   $('#recall, #rinnovo').click(function() {
     var recall = $('#recall, #rinnovo').is(':checked');
     $('#data_recall').prop('disabled', !(recall));
+    $('#data_recall').prop('required', recall);
+    $('#priorita').prop('disabled', !(recall));
   });
 
   //  Imposto la data corrente nel campo data incontro di default

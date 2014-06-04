@@ -12,6 +12,7 @@ $persona_interessata = assignToVar('persona_interessata');
 $professione = assignToVar('professione');
 $tel_cell = assignToVar('tel_cell');
 $tel_fisso = assignToVar('tel_fisso');
+$email = assignToVar('email');
 $citta = assignToVar('citta');
 $indirizzo = assignToVar('indirizzo');
 $data_incontro = assignToVar('data_incontro');
@@ -23,6 +24,7 @@ $codice = assignToVar('codice');
 $rinnovo = isset($_POST["rinnovo"]) ? $_POST["rinnovo"] : 0;
 $data_recall = assignToVar('data_recall');
 $recall = isset($_POST["recall"]) ? $_POST["recall"] : 0;
+$priorita = (int)assignToVar('priorita');
 $id_utente = $_SESSION['user_id'];
 
 
@@ -46,6 +48,7 @@ $dati = array(
 	'professione'			=>		$professione,
 	'tel_cell'				=>		$tel_cell,
 	'tel_fisso'				=>		$tel_fisso,
+	'email'					=>		$email,
 	'citta'					=>		$citta,
 	'indirizzo'				=>		$indirizzo,
 	'data_incontro'			=>		$data_incontro,
@@ -57,13 +60,14 @@ $dati = array(
 	'rinnovo'				=>		$rinnovo,
 	'data_recall'			=>		$data_recall,
 	'recall'				=>		$recall,
+	'priorita'				=>		$priorita,
 	'id_utente'				=>		$id_utente
 );
 
 // query che salva i valori precedentemente dichiarati nel database
 $salva = executeQuery("INSERT INTO clienti
-			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, citta, indirizzo, data_incontro, codice_contratto, importo_contratto, modalita_pagamento, note, codice, rinnovo, data_recall, recall, id_utente)
-	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :citta, :indirizzo, :data_incontro, :codice_contratto, :importo_contratto, :modalita_pagamento, :note, :codice, :rinnovo, :data_recall, :recall, :id_utente);",
+			(nome, cognome, data_nascita, componenti_nucleo, persona_interessata, professione, tel_cell, tel_fisso, email, citta, indirizzo, data_incontro, codice_contratto, importo_contratto, modalita_pagamento, note, codice, rinnovo, data_recall, recall, priorita, id_utente)
+	VALUES 	(:nome, :cognome, :data_nascita, :componenti_nucleo, :persona_interessata, :professione, :tel_cell, :tel_fisso, :email, :citta, :indirizzo, :data_incontro, :codice_contratto, :importo_contratto, :modalita_pagamento, :note, :codice, :rinnovo, :data_recall, :recall, :priorita, :id_utente);",
 	$dati, $conn);
 $id = $conn->lastInsertId();
 

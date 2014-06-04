@@ -75,6 +75,10 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
       <input id="tel_cell" name="tel_cell" type="tel" placeholder="Es. 3471223345" x-moz-errormessage="Inserisci il numero di telefono fisso" value="<?php echo $cliente['tel_cell']; ?>">
     </li>
     <li>
+      <label for="email">Email</label>
+      <input id="email" name="email" type="email" placeholder="Es. mario@rossi.com" x-moz-errormessage="Inserisci l'email" value="<?php echo $cliente['email']; ?>">
+    </li>
+    <li>
       <label for="data_incontro">Data Incontro</label>
       <input id="data_incontro" name="data_incontro" type="date" placeholder="" value="<?php 
           $data = strtotime($cliente['data_incontro']);
@@ -122,6 +126,14 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
           echo date('Y-m-d',$data); 
         ?>">
     </li>
+    <li>
+      <label for="priorita">Priorit&agrave;</label>
+      <select name="priorita" id="priorita" x-moz-errormessage="Inserisci la priorità">
+        <option value="1" <?php if ($cliente['priorita'] == "1"): ?> selected="selected"<?php endif; ?>>Bassa</option>
+        <option value="2" <?php if ($cliente['priorita'] == "2"): ?> selected="selected"<?php endif; ?>>Normale</option>
+        <option value="3" <?php if ($cliente['priorita'] == "3"): ?> selected="selected"<?php endif; ?>>Alta</option>
+      </select>
+    </li>
   </ol>
 </fieldset>
 
@@ -144,8 +156,11 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
   $('#recall, #rinnovo').click(function() {
     recall = $('#recall, #rinnovo').is(':checked');
     $('#data_recall').prop('disabled', !(recall));
+    $('#data_recall').prop('required', recall);
+    $('#priorita').prop('disabled', !(recall));
   });
   $('#data_recall').prop('disabled', !(recall));
+  $('#priorita').prop('disabled', !(recall));
 })(jQuery);
 
 </script>
