@@ -37,6 +37,7 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         <li><strong>Professione:</strong> <?php echo $cliente['professione']; ?></li>
         <li><strong>Tel. cellulare:</strong> <?php echo $cliente['tel_cell']; ?></li>
         <li><strong>Tel. fisso:</strong> <?php echo $cliente['tel_fisso']; ?></li>
+        <li><strong>Email:</strong> <a href="mailto:<?php echo $cliente['email']; ?>"><?php echo $cliente['email']; ?></a></li>
         <li><strong>Citt&agrave;:</strong> <?php echo $cliente['citta']; ?></li>
         <li><strong>Indirizzo:</strong> <?php echo $cliente['indirizzo']; ?></li>
         <li><strong>Data incontro:</strong> <?php 
@@ -67,6 +68,26 @@ if ( isset($_GET['id']) && !empty($_GET['id']) ) {
         <li><strong>Codice utente/corso:</strong> <?php echo $cliente['codice']; ?></li>
         <li><strong>Rinnovo:</strong> <?php echo $cliente['rinnovo'] ? 'Si' : 'No'; ?></li>
         <li><strong>Recall:</strong> <?php echo $cliente['recall'] ? 'Da richiamare' : 'No'; ?></li>
+        <?php if ($cliente['recall'] || $cliente['rinnovo']) { ?>
+            <li><strong>Priorit&agrave;:</strong> <?php 
+            switch ($cliente['priorita']) {
+              case '1':
+                echo 'Bassa';
+                break;
+
+              case '2':
+                echo 'Normale';
+                break;
+
+              case '3':
+                echo 'Alta';
+                break;
+
+               default:
+                 echo 'N/D';
+                 break;
+             } ?></li>
+        <?php } ?>
         <li><strong>Data recall:</strong> <?php 
                 echo $cliente['recall'] ? date('d/m/Y',strtotime($cliente['data_recall'])) : 'N/D'; 
               ?></li>
